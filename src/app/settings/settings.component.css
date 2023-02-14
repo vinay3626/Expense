@@ -1,0 +1,24 @@
+
+.change-password-card{
+   width: 700px;
+
+}
+.profile-card{
+
+  text-align: center;
+  width: 700px;
+
+}
+.Adjustments-card{
+  margin-left: 250px;
+  margin-top: 30px;
+  width: 700px;
+}
+
+mat-slide-toggle{
+  margin: 10px;
+}
+
+
+
+

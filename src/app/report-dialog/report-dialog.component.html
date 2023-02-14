@@ -1,0 +1,52 @@
+<div style="margin-left: 10px;">
+  <h2 mat-dialog-title style="text-align: center;">New Report</h2>
+
+    <form [formGroup]="ReportForm" >
+      <ng-template >Add Report Details</ng-template>
+      <mat-form-field class="example-full-width" >
+        <mat-label>Date</mat-label>
+        <input  matInput formControlName = "date"  matInput  [matDatepicker]="picker" required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field style="margin-left: 30px;">
+        <mat-label>Report Name</mat-label>
+        <input matInput formControlName="reportName"  matInput placeholder="Report Name" required>
+      </mat-form-field>
+<br>
+
+      <mat-form-field style="align-items: end;">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput >  </textarea>
+      </mat-form-field>
+
+    </form>
+
+
+    <mat-form-field (click)="selectExpenses()" appearance="outline" style="width: 300px ;">
+      <mat-label >Select Expenses</mat-label>
+      <mat-select   multiple>
+        <mat-option *ngFor="let expense of uniqueExpenseNames" [value]="expense">{{expense}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field (click)="selectTrips()" appearance="outline" style="width: 300px; margin-left: 10px ;">
+      <mat-label >Select Trips</mat-label>
+      <mat-select   multiple>
+        <mat-option *ngFor="let trip of uniqueTripNames" [value]="trip">{{trip}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+</div>
+
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="primary" (click)="addReports()" >{{actionBtn}}</button>
+      <button mat-raised-button mat-dialog-close>CANCEL</button>
+    </div>
+
+
+

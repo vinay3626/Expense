@@ -1,0 +1,27 @@
+<section class="tit-layout-wrapper">
+    <!-- top nav -->
+    <section class="tit-header-container">
+      <app-header></app-header>
+    </section>
+  
+    <mat-drawer-container class="example-container">
+      <mat-drawer mode="side" class="mat-sidebar"  opened>
+        <!-- side nav -->
+      <app-side-nav></app-side-nav>
+      </mat-drawer>
+      <mat-drawer-content>
+        <!-- main container -->
+      <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+    
+    <!-- side nav -->
+    <!-- <section class="tit-side-nav-container">
+      <app-side-nav></app-side-nav>
+    </section> -->
+  
+    <!-- main container -->
+    <!-- <section class="tit-content-container">
+      <router-outlet></router-outlet>
+    </section>
+  </section> -->

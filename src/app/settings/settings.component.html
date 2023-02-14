@@ -1,0 +1,113 @@
+<div class="container">
+
+<div >
+  <mat-card class="Adjustments-card" >
+    <mat-card-title>Adjustments</mat-card-title>
+    <mat-card-content style="margin: 20px;">
+      <mat-slide-toggle >Use Expenses only in INR</mat-slide-toggle>
+    <br>
+    <mat-slide-toggle >Email me when someone adds an Expense</mat-slide-toggle>
+    <br>
+    <mat-slide-toggle >Email me when someone adds an Report</mat-slide-toggle>
+     <br>
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>Time-Zone</mat-label>
+      <mat-select>
+        <mat-option value="one"> IST, Kolkata, West Bengal (GMT+5:30)</mat-option>
+        <mat-option value="two">  Austin, TX, USA (GMT-6)</mat-option>
+        <mat-option value="three"> Dubai - United Arab Emirates (GMT+4)</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <mat-card-actions [align]="'end'">
+    <button mat-raised-button color="primary">SAVE</button>
+    <button mat-raised-button >CANCLE</button>
+
+  </mat-card-actions>
+  </mat-card>
+  </div>
+
+
+<div  style="margin-left: 250px; margin-top: 30px;"  >
+<mat-card class="profile-card">
+  <mat-card-header >
+    <mat-card-title>Profile Details</mat-card-title>
+    <mat-card-subtitle>Edit your profile</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+  <form [formGroup]="profileForm" >
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>EmployeeId</mat-label>
+      <input formControlName="employeeId"  matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>FirstName</mat-label>
+      <input formControlName="firstName" type="text"  matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>LastName</mat-label>
+      <input formControlName="lastName" type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label >Email</mat-label>
+      <input formControlName="email" type="email" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label >Mobile</mat-label>
+      <input formControlName="mobile"  matInput>
+    </mat-form-field>
+  </form>
+
+  </mat-card-content>
+  <mat-card-actions [align]="'end'">
+    <button mat-raised-button>RESET</button>
+    <button mat-raised-button color="primary">SAVE</button>
+  </mat-card-actions>
+</mat-card>
+</div>
+
+
+<div style="margin-left: 250px; margin-top: 30px;" >
+<mat-card class="change-password-card"  >
+<mat-card-title>Change Password</mat-card-title>
+<mat-card-content>
+  <br>
+
+  <form [formGroup]="changePasswordform" >
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>Current Password</mat-label>
+      <input formControlName="currentPassword" type="password" matInput>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>New Password</mat-label>
+      <input formControlName="newPassword" type="password"  matInput>
+    </mat-form-field>
+<br>
+    <mat-form-field appearance="fill" style="margin: 10px;">
+      <mat-label>Confirm New Password</mat-label>
+      <input formControlName="confirmPassword" type="password" matInput>
+    </mat-form-field>
+  </form>
+
+</mat-card-content>
+<mat-card-actions [align]="'end'">
+  <button mat-raised-button >RESET</button>
+  <button mat-raised-button color="primary">SAVE</button>
+</mat-card-actions>
+</mat-card>
+</div>
+
+
+
+
+</div>

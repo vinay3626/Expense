@@ -1,0 +1,200 @@
+{
+  "expenseList": [
+    {
+      "date": "2022-10-31T18:30:00.000Z",
+      "merchant": "D-link",
+      "amount": "10000",
+      "currency": "INR",
+      "description": "Basic Router",
+      "category": "It Equipment and Software",
+      "id": 2
+    },
+    {
+      "date": "2022-10-31T18:30:00.000Z",
+      "merchant": "Nothing",
+      "amount": "200",
+      "currency": "USD",
+      "description": "A Android Phone",
+      "category": "It Equipment and Software",
+      "id": 5
+    },
+    {
+      "date": "2022-11-14T18:30:00.000Z",
+      "merchant": "Iphone 14",
+      "amount": "1000",
+      "currency": "USD",
+      "description": "A apple phone",
+      "category": "It Equipment and Software",
+      "id": 6
+    },
+    {
+      "date": "11/9/2022",
+      "merchant": "Bawarchi",
+      "amount": "1000",
+      "currency": "INR",
+      "description": "One single chicken biryani",
+      "category": "Meals and Entertainment",
+      "id": 8
+    },
+    {
+      "date": "2022-10-31T18:30:00.000Z",
+      "merchant": "Testing ",
+      "amount": "100",
+      "currency": "INR",
+      "description": "Test description",
+      "category": "Car Rental",
+      "id": 9
+    },
+    {
+      "date": "2022-11-02T18:30:00.000Z",
+      "merchant": "kfc",
+      "amount": "90",
+      "currency": "INR",
+      "description": "n",
+      "category": "Car Rental",
+      "id": 10
+    },
+    {
+      "date": "2022-11-01T18:30:00.000Z",
+      "merchant": "Trident",
+      "amount": "1000",
+      "currency": "INR",
+      "description": "Hello",
+      "reports": "none",
+      "category": "Others",
+      "id": 11
+    }
+  ],
+  "TripsList": [
+    {
+      "tripName": "Trip to Delhi",
+      "fromLocation": "Hyderabad",
+      "fromDate": "12/12/2022",
+      "toLocation": "Delhi",
+      "toDate": "12/22/2022",
+      "description": "A business trip....",
+      "id": 1
+    },
+    {
+      "tripName": "Vietnam",
+      "fromLocation": "Hyderabad",
+      "fromDate": "12/12/2022",
+      "toLocation": "Vietnam",
+      "toDate": "12/22/2022",
+      "description": "A business trip",
+      "id": 2
+    },
+    {
+      "tripName": "Trip To Chennai",
+      "fromLocation": "Hyderabad",
+      "fromDate": "12/12/1998",
+      "toLocation": "Chennai",
+      "toDate": "12/12/1998",
+      "description": "A Vacation trip",
+      "id": 3
+    },
+    {
+      "tripName": "Newyork",
+      "fromLocation": "Hyderabad",
+      "fromDate": "1/1/2020",
+      "toLocation": "New York",
+      "toDate": "2/1/2020",
+      "description": "A business trip",
+      "id": 5
+    }
+  ],
+  "ReportList": [
+    {
+      "date": "2022-12-01T18:30:00.000Z",
+      "reportName": " Testing Report",
+      "description": " Testing description",
+      "id": 1
+    },
+    {
+      "date": "2022-12-01T18:30:00.000Z",
+      "reportName": " Testing Report",
+      "description": " Testing description",
+      "id": 2
+    },
+    {
+      "date": "2022-11-03T18:30:00.000Z",
+      "reportName": " testing 2 report",
+      "description": " no description",
+      "id": 3
+    },
+    {
+      "date": "2022-11-11T18:30:00.000Z",
+      "reportName": "First Report",
+      "description": "Test description",
+      "id": 4
+    },
+    {
+      "date": "2000-12-31T18:30:00.000Z",
+      "reportName": " Testing Report",
+      "description": " no desc",
+      "id": 5
+    },
+    [
+      {
+        "date": "12/06/2020",
+        "merchant": "Nothing",
+        "amount": "200",
+        "currency": "USD",
+        "description": "A Android Phone",
+        "category": "It Equipment and Software",
+        "id": 5
+      }
+    ],
+    [
+      {
+        "date": "2/2/2029",
+        "merchant": "Iphone 14",
+        "amount": "1000",
+        "currency": "USD",
+        "description": "A apple phone",
+        "category": "It Equipment and Software",
+        "id": 6
+      }
+    ],
+    {
+      "date": "2022-11-08T18:30:00.000Z",
+      "reportName": " New report ",
+      "description": "Report description",
+      "id": 6
+    },
+    [
+      {
+        "date": "10/10/2020",
+        "merchant": "D-link",
+        "amount": "1000",
+        "currency": "INR",
+        "description": "Basic Router",
+        "category": "It Equipment and Software",
+        "id": 2
+      }
+    ],
+    {
+      "date": "2022-10-31T18:30:00.000Z",
+      "reportName": " again testing 2",
+      "description": " desc",
+      "id": 8
+    },
+    [
+      {
+        "date": "2/2/2029",
+        "merchant": "Iphone 14",
+        "amount": "1000",
+        "currency": "USD",
+        "description": "A apple phone",
+        "category": "It Equipment and Software",
+        "id": 6
+      }
+    ],
+    {
+      "date": "2022-11-07T18:30:00.000Z",
+      "reportName": " Testing again 3",
+      "description": " desc",
+      "id": 10
+    }
+  ]
+}

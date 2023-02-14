@@ -1,0 +1,99 @@
+<h1 mat-dialog-title>Add Expense</h1>
+
+    <form [formGroup]="expenseForm">
+
+      <div  mat-dialog-content  >
+
+        <div>
+          <mat-form-field columns appearance="outline" style="width: 200px;" >
+            <mat-label>Choose a date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field  columns appearance="outline" style= "margin-left: 20px;">
+            <mat-label>Merchant</mat-label>
+            <input formControlName = "merchant" matInput placeholder="Merchant">
+          </mat-form-field>
+
+        </div>
+
+        <div>
+          <mat-form-field  appearance="outline" >
+            <mat-label>Amount</mat-label>
+            <input formControlName = "amount" matInput placeholder="amount">
+          </mat-form-field>
+
+          <mat-form-field  appearance="outline" style="width:30%; margin-left: 20px">
+            <mat-label>Currency</mat-label>
+            <mat-select formControlName = "currency"  placeholder="currency">
+            <mat-option value ="INR">INR</mat-option>
+            <mat-option value ="USD">USD</mat-option>
+            <mat-option value ="EURO">EURO</mat-option>
+            <mat-option value ="Dong">Dong</mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+
+
+        <div>
+
+
+        <mat-form-field appearance="outline"  >
+          <mat-label>Category</mat-label>
+          <mat-select  formControlName = "category" placeholder = "category">
+            <mat-option value ="Car Rental">Car Rental</mat-option>
+            <mat-option value ="Flight">Flight</mat-option>
+            <mat-option value ="Fuel">Fuel</mat-option>
+            <mat-option value ="Hotel">Hotel</mat-option>
+            <mat-option value ="Meals and Entertainment">Meals and Entertainment</mat-option>
+            <mat-option value ="It Equipment and Software">It Equipment and Software</mat-option>
+            <mat-option value ="Taxi">Taxi</mat-option>
+            <mat-option value ="Train">Train</mat-option>
+            <mat-option value ="Others">Others</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style= "margin-left: 20px;">
+          <mat-label>Reports</mat-label>
+          <mat-select formControlName = "reports" placeholder="Reports">
+            <mat-option value="Automatic">Automatic</mat-option>
+            <mat-option value="none">none</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        </div>
+
+               <div>
+
+              <mat-form-field appearance="outline" >
+                <mat-label>Description</mat-label>
+                <textarea   formControlName = "description" matInput placeholder="Description"></textarea>
+              </mat-form-field>
+
+            <mat-checkbox class="example-margin" style=" margin-left: 20px; margin-bottom: 40px;">Reimbursable</mat-checkbox>
+
+            </div>
+
+
+            <div >
+              <input hidden type="file" #profileUpload (change)="ImageUpload($event)">
+              <button   mat-raised-button color="primary" (click)="profileUpload.click()" >
+                Upload Receipt
+              </button>
+
+              <img style="border-radius:0%; margin-left:100px; height: 75px; width:100px"  src="/assets/receipt1.jpg">
+
+            </div>
+
+        </div>
+    </form>
+
+      <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="primary" (click)="addExpense()">{{actionBtn}}</button>
+        <button mat-raised-button  mat-dialog-close>Cancel</button>
+
+       </div>
+

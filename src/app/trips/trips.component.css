@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+  }
+
+  .container{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .example-container {
+    width: 95%;
+    height: 500px;
+    margin: 10px;
+    border: 1px solid #555;
+  }

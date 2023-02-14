@@ -1,0 +1,31 @@
+example-spacer {
+    flex: 1 1 auto;
+  }
+  .example-container {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+  }
+
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .container{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .example-container {
+    width: 95%;
+    height: 500px;
+    margin: 10px;
+    border: 1px solid #555;
+  }
+  

@@ -18,6 +18,11 @@ export class ApiService {
       return this.http.get<any>("http://localhost:8080/expense/fetch/expenses");
     }
 
+    getExpenseByMerchantName(merchant : String ){
+      return this.http.get<any>("http://localhost:8080/expense/fetch/merchant/"+merchant);
+
+    }
+
     putExpense( data:any,id:number){
       return this.http.put<any>("http://localhost:8080/expense/update/expense/"+id,data)
     }
@@ -50,6 +55,10 @@ export class ApiService {
       return this.http.get<any>("http://localhost:8080/expense/fetch/reports")
     }
 
+    getReportByReportName(reportName :String){
+        return this.http.get<any>("http://localhost:8080/expense/fetch/reportName/"+reportName)
+    }
+
     postReport(data :any){
       return this.http.post<any>("http://localhost:8080/expense/save/report",data)
     }
@@ -62,9 +71,11 @@ export class ApiService {
       return this.http.delete<any>("http://localhost:8080/expense/delete/report/"+id)
     }
 
-    
 
 
 
-   
+
+
+
+
 }

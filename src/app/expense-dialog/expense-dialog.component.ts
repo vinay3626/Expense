@@ -36,8 +36,8 @@ export class ExpenseDialogComponent implements OnInit {
 
 
     })
-          console.log(this.editData)
-      if(this.editData){
+          // console.log(this.editData)
+       if(this.editData){
         this.actionBtn = 'Update'
         this.expenseForm.controls['date'].setValue(this.editData.date);
         this.expenseForm.controls['merchant'].setValue(this.editData.merchant);
@@ -53,10 +53,11 @@ export class ExpenseDialogComponent implements OnInit {
   addExpense(){
     if(!this.editData){
     if(this.expenseForm.valid){
+      // console.log(this.expenseForm.value);
       this.api.postExpense(this.expenseForm.value)
       .subscribe({
         next:(res)=>{
-        this.toast.success({detail:'Success',summary:'Expense added successfully', duration: 5000})
+        this.toast.success({detail:'Success',summary:'Expense added successfully', duration: 3000})
         this.expenseForm.reset();
           this.dialogRef.close('save')
 

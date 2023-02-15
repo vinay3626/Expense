@@ -15,6 +15,12 @@ import { ApiService } from '../services/api.service';
 export class ReportsComponent implements OnInit {
 
 
+  ExpensesNames :string[] =[];
+  uniqueExpenseNames : string[] =[] ;
+
+  TripsNames : String[] =[];
+  uniqueTripNames : String[] = []
+
   ReportColumn : string[] = ['reportName','date','description','action' ];
 //  expandedElement !: reportsInter | null;
  reportsDataSource !: MatTableDataSource<any>;
@@ -32,6 +38,53 @@ export class ReportsComponent implements OnInit {
     this.getAllReports()
 
   }
+
+  // selectExpenses(){
+  //   this.api.getExpense()
+  //     .subscribe({
+  //       next:(results)=>{
+
+  //       results.results.forEach((element: any) => {
+
+  //         this.ExpensesNames.push(element.merchant)
+
+  //       });
+  //       // console.log(this.ExpensesName);
+  //         this.ExpensesNames.forEach((merchant)=>{
+  //             if(!this.uniqueExpenseNames.includes(merchant)){
+  //               this.uniqueExpenseNames.push(merchant)
+  //             }
+  //         });
+  //         console.log(this.uniqueExpenseNames)
+  //     }
+  //   })
+
+  // }
+
+  // selectTrips(){
+
+  //   this.api.getTrip()
+  //   .subscribe({
+  //     next:(results)=>{
+  //       // console.log(results.results)
+
+  //      results.results.forEach((element : any)=>{
+  //        this.TripsNames.push(element.tripName)
+  //       //  console.log(element.tripName)
+
+  //      })
+  //     //  console.log(this.TripsNames)
+  //         this.TripsNames.forEach((tripName : any)=>{
+  //           if(!this.uniqueTripNames.includes(tripName)){
+  //               this.uniqueTripNames.push(tripName)
+  //           }
+  //         });
+  //         console.log(this.uniqueTripNames)
+  //     }
+
+  //   })
+
+  // }
 
 
   openReportDialog() {

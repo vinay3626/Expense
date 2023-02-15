@@ -56,6 +56,8 @@ export class ExpenseComponent implements OnInit {
   }
 
   editExpense(row:any){
+    console.log(row);
+
     this.dialog.open(ExpenseDialogComponent,{
       width:"40%" ,
       data:row

@@ -4,7 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
-import { ExpenseData } from './expenseData';
+// import { ExpenseData } from './expenseData';
 import { SelectionModel } from '@angular/cdk/collections';
 import { NgToastService } from 'ng-angular-popup';
 
@@ -21,11 +21,15 @@ export class ReportDialogComponent implements OnInit {
   actionBtn :string = "Submit";
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
+
+
   ExpensesNames :string[] =[];
   uniqueExpenseNames : string[] =[] ;
 
   TripsNames : String[] =[];
   uniqueTripNames : String[] = []
+
+
 
 
   constructor(private dialog :MatDialog,
@@ -42,14 +46,18 @@ export class ReportDialogComponent implements OnInit {
 
 
     this.api.getExpense()
+    this.selectExpenses()
+    this.selectTrips()
 
-    console.log(this.editData)
+    // console.log(this.editData)
 
 
     this.ReportForm = this.formBuilder.group({
       date : ['', Validators.required],
       reportName: ['', Validators.required],
-      description : ['', Validators.max(30)]
+      description : ['', Validators.max(30)],
+      expenses : [''],
+      // trips : ['']
     });
 
 if(this.editData){
@@ -57,6 +65,8 @@ if(this.editData){
   this.ReportForm.controls['date'].setValue(this.editData.date);
   this.ReportForm.controls['reportName'].setValue(this.editData.reportName);
   this.ReportForm.controls['description'].setValue(this.editData.description);
+  this.ReportForm.controls['selectExpenses'].setValue(this.editData.expenses);
+  this.ReportForm.controls['selectTrips'].setValue(this.editData.trips);
 }
 
 
@@ -109,9 +119,29 @@ selectTrips(){
 
 }
 
+
+
   addReports(){
     if(!this.editData){
+
     if(this.ReportForm.valid){
+
+      if (this.ReportForm.value.expenses.length >= 1){
+        this.api.getExpenseByMerchantName(this.ReportForm.value.expenses[0])
+         .subscribe({
+        next : (results)=>{
+          // console.log(results.results)
+          this.ReportForm.value.expenses.splice(0,1)
+          this.ReportForm.value.expenses.push(results.results)
+          // console.log(this.ReportForm.value)
+        }
+      })
+      }else{
+
+      }
+
+
+      console.log(this.ReportForm.value)
       this.api.postReport(this.ReportForm.value)
       .subscribe({
         next:(res)=>{

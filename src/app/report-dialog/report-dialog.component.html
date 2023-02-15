@@ -24,22 +24,23 @@
         <textarea formControlName="description" matInput >  </textarea>
       </mat-form-field>
 
-    </form>
+<br>
 
-
-    <mat-form-field (click)="selectExpenses()" appearance="outline" style="width: 300px ;">
+    <mat-form-field appearance="outline" style="width: 300px ;">
       <mat-label >Select Expenses</mat-label>
-      <mat-select   multiple>
-        <mat-option *ngFor="let expense of uniqueExpenseNames" [value]="expense">{{expense}}</mat-option>
+      <mat-select  formControlName="expenses"  multiple>
+        <mat-option  *ngFor="let expense of uniqueExpenseNames" [value]="expense">{{expense}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field (click)="selectTrips()" appearance="outline" style="width: 300px; margin-left: 10px ;">
+    <mat-form-field  appearance="outline" style="width: 300px; margin-left: 10px ;">
       <mat-label >Select Trips</mat-label>
       <mat-select   multiple>
-        <mat-option *ngFor="let trip of uniqueTripNames" [value]="trip">{{trip}}</mat-option>
+        <mat-option   *ngFor="let trip of uniqueTripNames" [value]="trip">{{trip}}</mat-option>
       </mat-select>
     </mat-form-field>
+  </form>
+
 
 </div>
 

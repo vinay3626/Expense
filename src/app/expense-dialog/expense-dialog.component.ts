@@ -54,15 +54,17 @@ export class ExpenseDialogComponent implements OnInit {
     if(!this.editData){
     if(this.expenseForm.valid){
       // console.log(this.expenseForm.value);
+      console.log("hello")
       this.api.postExpense(this.expenseForm.value)
       .subscribe({
         next:(res)=>{
-        this.toast.success({detail:'Success',summary:'Expense added successfully', duration: 3000})
+          console.log("Hello")
+        this.toast.success({detail:'Success',summary:'Expense added successfully',position:'br', duration: 3000})
         this.expenseForm.reset();
           this.dialogRef.close('save')
 
         },error:(err)=>{
-        this.toast.error({detail:'Error Message',summary:'Error addinng expense', duration: 5000})
+        this.toast.error({detail:'Error Message',summary:'Error addinng expense',position:'br', duration: 5000})
         }
       })
     }
@@ -75,12 +77,12 @@ export class ExpenseDialogComponent implements OnInit {
       this.api.putExpense(this.expenseForm.value,this.editData.expenseId)
         .subscribe({
           next:(res)=>{
-            this.toast.success({detail:'Success Message',summary:'Expense updated',duration:3000})
+            this.toast.success({detail:'Success Message',summary:'Expense updated',position:'br',duration:3000})
             this.expenseForm.reset();
             this.dialogRef.close('update')
           },
           error:()=>{
-            this.toast.error({detail:'Error Message',summary:'Error Updating expense',duration:3000})
+            this.toast.error({detail:'Error Message',summary:'Error Updating expense',position:'br',duration:3000})
           }
         })
   }

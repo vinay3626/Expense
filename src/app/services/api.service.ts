@@ -18,7 +18,7 @@ export class ApiService {
       return this.http.get<any>("http://localhost:8080/expense/fetch/expenses");
     }
 
-    getExpenseByMerchantName(merchant : String ){
+    getExpenseByExpenseName(merchant : String ){
       return this.http.get<any>("http://localhost:8080/expense/fetch/merchant/"+merchant);
 
     }
@@ -29,6 +29,14 @@ export class ApiService {
 
     deleteExpense(id:number){
       return this.http.delete<any>("http://localhost:8080/expense/delete/expense/"+id)
+    }
+
+    approveExpense(data : any,id : number){
+      return this.http.post<any>("http://localhost:8080/expense/expense/approve/"+id,data)
+    }
+
+    rejectExpense(data : any,id :number){
+      return this.http.post<any>("http://localhost:8080/expense/expense/reject/"+id,data)
     }
 
     //Trip Api services

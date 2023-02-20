@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgToastService } from 'ng-angular-popup';
+import { NgConfirmService } from 'ng-confirm-box';
 import { ExpenseDialogComponent } from '../expense-dialog/expense-dialog.component';
 import { ApiService } from '../services/api.service';
 
@@ -14,7 +15,7 @@ import { ApiService } from '../services/api.service';
 })
 export class ExpenseComponent implements OnInit {
 
-  expenseColumns: string[] = ['date', 'merchant', 'currency','category','description','amount', 'action'];
+  expenseColumns: string[] = ['date', 'merchant', 'currency','category','description','amount' ,'Status', 'action'];
 
   expenseDataSource !: MatTableDataSource<any>;
 
@@ -23,7 +24,7 @@ export class ExpenseComponent implements OnInit {
   @ViewChild(MatSort) sort !: MatSort;
 
   constructor(private dialog:MatDialog, private api :ApiService,
-    private toast : NgToastService) { }
+    private toast : NgToastService,private confirm:NgConfirmService) { }
 
   ngOnInit(): void {
     this.getAllExpenses()
@@ -50,7 +51,7 @@ export class ExpenseComponent implements OnInit {
         this.expenseDataSource.sort = this.sort
         },
     error:()=>{
-      this.toast.error({detail:'Error Message',summary:'Error in fetching expenses',duration:5000})
+      this.toast.error({detail:'Error Message',summary:'Error in fetching expenses',position:'br',duration:5000})
     }
   })
   }
@@ -69,16 +70,26 @@ export class ExpenseComponent implements OnInit {
   }
 
   deleteExpense(id:number){
-    this.api.deleteExpense(id)
-    .subscribe({
-      next: (res)=>{
-        this.toast.success({detail:'Sucess Message',summary:'Expense Deleted',duration:3000})
-        this.getAllExpenses();
-      },
-      error:()=>{
-        this.toast.error({detail:'Error Message',summary:'Error deleting expense',duration:3000})
-      }
+
+    this.confirm.showConfirm("Are you sure want to delete?",
+    ()=>{
+
+      this.api.deleteExpense(id)
+      .subscribe({
+        next: (res)=>{
+          this.toast.success({detail:'Sucess Message',summary:'Expense Deleted',position:'br',duration:3000})
+          this.getAllExpenses();
+        },
+        error:()=>{
+          this.toast.error({detail:'Error Message',summary:'Error deleting expense',position:'br',duration:3000})
+        }
+      })
+
+    },
+    ()=>{
+
     })
+
   }
 
   applyFilter(event: Event) {

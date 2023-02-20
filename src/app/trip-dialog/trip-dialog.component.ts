@@ -2,7 +2,7 @@ import {  NgToastService } from 'ng-angular-popup';
 import { ApiService } from './../services/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'; 
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class TripDialogComponent implements OnInit {
 
   tripForm !: FormGroup
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.tripForm = this.FormBuilder.group({
       tripName : ['',Validators.required],
       fromLocation : ['',Validators.required],
@@ -29,10 +29,12 @@ export class TripDialogComponent implements OnInit {
       toLocation: ['',Validators.required],
       toDate : ['',Validators.required],
       description : ['',Validators.max(30)]
-      
+
     })
-      
+
     if(this.tripEditData){
+      console.log(this.tripEditData);
+
       this.actionBtn = 'Update'
       this.tripForm.controls['tripName'].setValue(this.tripEditData.tripName)
       this.tripForm.controls['fromLocation'].setValue(this.tripEditData.fromLocation)
@@ -52,12 +54,12 @@ export class TripDialogComponent implements OnInit {
         this.api.postTrip(this.tripForm.value)
         .subscribe({
           next:(res)=>{
-            this.toast.success({detail:'Success',summary:'Trip added successfully', duration: 3000})  
+            this.toast.success({detail:'Success',summary:'Trip added successfully',position:'br', duration: 3000})
             this.tripForm.reset()
             this.dialogRef.close('save')
           },
           error:(err)=>{
-            this.toast.error({detail:'Error Message',summary:'Error deleting expense',duration:3000})
+            this.toast.error({detail:'Error Message',summary:'Error deleting expense',position:'br',duration:3000})
           }
          } )
         }
@@ -66,21 +68,21 @@ export class TripDialogComponent implements OnInit {
         this.updateTrip()
     }
     }
-    
+
     updateTrip(){
       this.api.putTrip(this.tripForm.value,this.tripEditData.tripId)
       .subscribe({
         next:(res)=>{
-          this.toast.success({detail:'Success',summary:'Trip updated successfully', duration: 3000})  
+          this.toast.success({detail:'Success',summary:'Trip updated successfully',position:'br', duration: 3000})
           this.tripForm.reset()
             this.dialogRef.close('Update')
         },
         error:()=>{
-          this.toast.error({detail:'Error Message',summary:'Error Updating expense',duration:3000})
+          this.toast.error({detail:'Error Message',summary:'Error Updating expense',position:'br',duration:3000})
         }
       })
     }
-      
+
 
   }
 

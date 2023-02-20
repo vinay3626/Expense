@@ -1,3 +1,4 @@
+import { NgConfirmService } from 'ng-confirm-box';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,15 +15,15 @@ import { TripDialogComponent } from '../trip-dialog/trip-dialog.component';
 })
 export class TripsComponent implements OnInit {
 
-  tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description', 'action']
+  tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description','Status', 'action']
   tripDataSource !: MatTableDataSource<any>;
 
-  
+
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
   constructor(private dialog:MatDialog, private api :ApiService,
-    private toast : NgToastService ) { }
+    private toast : NgToastService,private confirm : NgConfirmService ) { }
 
   ngOnInit(): void {
     this.getAllTrips()
@@ -37,7 +38,7 @@ export class TripsComponent implements OnInit {
           this.getAllTrips()
         }
     })
-    
+
   }
 
   getAllTrips(){
@@ -50,11 +51,11 @@ export class TripsComponent implements OnInit {
         this.tripDataSource.sort = this.sort
       },
       error:()=>{
-      this.toast.error({detail:'Error Message',summary:'Error in fetching Trips',duration:3000})
+      this.toast.error({detail:'Error Message',summary:'Error in fetching Trips',position:'br',duration:3000})
       }
 
     })
-    
+
   }
 
   editTrip(row:any){
@@ -70,18 +71,26 @@ export class TripsComponent implements OnInit {
   }
 
   deleteTrip(id:number){
-    //  console.log(id)
+
+    this.confirm.showConfirm("Are you sure want to delete?",
+    ()=>{
       this.api.deleteTrip(id)
       .subscribe({
         next:(res)=>{
-          this.toast.success({detail:'Success',summary:'Trip deleted successfully', duration: 3000})  
+          this.toast.success({detail:'Success',summary:'Trip deleted successfully',position:'br', duration: 3000})
           this.getAllTrips();
         },
         error:()=>{
-          this.toast.error({detail:'Error Message',summary:'Error  deleting trip',duration:3000})
+          this.toast.error({detail:'Error Message',summary:'Error  deleting trip',position:'br',duration:3000})
         }
       })
-  
+    },
+    ()=>{
+
+    }
+    )
+
+
     }
 
 

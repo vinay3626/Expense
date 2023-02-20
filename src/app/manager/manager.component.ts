@@ -1,3 +1,4 @@
+import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from './../services/api.service';
 import { Api1Service } from './../services/api1.service';
 import { HttpClient } from '@angular/common/http';
@@ -28,7 +29,7 @@ export class ManagerComponent implements OnInit {
 
   }
 
-  constructor(private api :ApiService) { }
+  constructor(private api :ApiService,private toast : NgToastService) { }
 
   ngOnInit(): void {
     this.getAllExpenses()
@@ -76,11 +77,20 @@ export class ManagerComponent implements OnInit {
   }
 
   ApproveExpense(row: any){
-    console.log(row)
+    // console.log(row)
+    this.api.approveExpense(row,row.expenseId)
+    .subscribe(res=>{
+      this.toast.success({detail:"Expense Approved",duration:3000})
+    })
   }
 
-  RejectExpense(expenseId : number){
-
+  RejectExpense(row : any){
+    this.api.rejectExpense(row,row.expenseId)
+    .subscribe(res=>{
+      this.toast.info({
+        detail: "Expense Rejected",duration:3000
+      })
+    })
   }
 
   applyTripsFilter(event: Event) {

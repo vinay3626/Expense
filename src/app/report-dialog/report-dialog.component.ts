@@ -121,28 +121,44 @@ selectTrips(){
 
 
 
-  addReports(){
-    if(!this.editData){
 
-    if(this.ReportForm.valid){
+async addReports(){
+              if(!this.editData){
+           if(this.ReportForm.valid){
+
+            if(this.ReportForm.value.expenses == ''){
+             let reportObj = {
+            ...this.ReportForm.value.expenses = []
+          }
+        }
 
       if (this.ReportForm.value.expenses.length >= 1){
-        this.api.getExpenseByMerchantName(this.ReportForm.value.expenses[0])
+        this.api.getExpenseByExpenseName(this.ReportForm.value.expenses[0])
          .subscribe({
         next : (results)=>{
           // console.log(results.results)
           this.ReportForm.value.expenses.splice(0,1)
           this.ReportForm.value.expenses.push(results.results)
-          // console.log(this.ReportForm.value)
+          console.log(this.ReportForm.value)
         }
       })
-      }else{
-
       }
 
+      const sleep = (ms: any) => new Promise(r => setTimeout(r, ms));
+
+      console.log('1');
+      // Sleeps for 2 seconds.
+      await sleep(1000);
+      console.log('2');
+
+
+      let reportObj = {
+        reportId: 0,
+        ...this.ReportForm.value
+      }
 
       console.log(this.ReportForm.value)
-      this.api.postReport(this.ReportForm.value)
+      this.api.postReport(reportObj)
       .subscribe({
         next:(res)=>{
           alert("Report added successfully");
@@ -155,13 +171,23 @@ selectTrips(){
         }
 
       })
+
+
     }
   }else{
+
     this.updateReport()
   }
   }
 
   updateReport() {
+    if(this.ReportForm.value.expenses == ''){
+      let reportObj = {
+        ...this.ReportForm.value.expenses = []
+      }
+
+
+    }
     this.api.putReport(this.ReportForm.value,this.editData.reportId)
     .subscribe({
       next:(res)=>{

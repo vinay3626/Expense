@@ -31,7 +31,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { ProfileComponent } from './profile/profile.component';
-// import { TabsComponent } from './tabs/tabs.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -45,7 +44,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
 import { ManagerComponent } from './manager/manager.component';
-
+import { NgConfirmModule } from 'ng-confirm-box'
 
 
 
@@ -101,7 +100,9 @@ import { ManagerComponent } from './manager/manager.component';
     LayoutModule,
     MatMenuModule,
     MatSlideToggleModule,
-    MatCardModule
+    MatCardModule,
+    NgConfirmModule
+
 
   ],
   providers: [{

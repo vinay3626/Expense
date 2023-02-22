@@ -46,7 +46,8 @@ import { HomeComponent } from './home/home.component';
 import { ManagerComponent } from './manager/manager.component';
 import { NgConfirmModule } from 'ng-confirm-box';
 import { RejectDialogComponent } from './reject-dialog/reject-dialog.component';
-import { InfoDialogComponent } from './info-dialog/info-dialog.component'
+import { InfoDialogComponent } from './info-dialog-expense/info-dialog.component';
+import { InfoDialogTripComponent } from './info-dialog-trip/info-dialog-trip.component'
 
 
 
@@ -73,6 +74,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component'
     ManagerComponent,
     RejectDialogComponent,
     InfoDialogComponent,
+    InfoDialogTripComponent,
 
   ],
   imports: [

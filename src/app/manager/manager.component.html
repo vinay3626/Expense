@@ -141,7 +141,7 @@
 
               <button *ngIf="!row.isActionTaken == true" class="button btn btn-outline-primary"   (click)="approveTrip(row)" >Approve </button>
             <button *ngIf="!row.isActionTaken == true" class="button btn btn-outline-danger" (click)="openRejectDialog(row)"> Reject</button>
-            <button class="button btn btn-outline-secondary">Info</button>
+            <button class="button btn btn-outline-secondary" (click)="openTripInfoDialog(row)" >Info</button>
           </td>
         </ng-container>
 

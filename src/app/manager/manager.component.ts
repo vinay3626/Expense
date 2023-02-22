@@ -1,4 +1,5 @@
-import { InfoDialogComponent } from './../info-dialog/info-dialog.component';
+import { InfoDialogTripComponent } from './../info-dialog-trip/info-dialog-trip.component';
+import { InfoDialogComponent } from '../info-dialog-expense/info-dialog.component';
 import { RejectDialogComponent } from './../reject-dialog/reject-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NgConfirmService } from 'ng-confirm-box';
@@ -124,6 +125,15 @@ export class ManagerComponent implements OnInit {
         data : row
     }).afterClosed().subscribe(val=>{
 
+
+    })
+  }
+
+  openTripInfoDialog(row : any){
+    this.dialog.open(InfoDialogTripComponent,{
+      width : "50%",
+      data :row
+    }).afterClosed().subscribe(val=>{
 
     })
   }

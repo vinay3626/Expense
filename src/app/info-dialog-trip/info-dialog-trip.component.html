@@ -1,0 +1,76 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>
+      Details of the Trip
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+
+      <mat-list-item >
+        <div matLine> Trip Name :
+            <button mat-button>{{this.infoTripData.tripName}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div matLine>Trip From Location :
+            <button  mat-button>{{this.infoTripData.fromLocation}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div matLine>Trip To Location :
+            <button  mat-button>{{this.infoTripData.toLocation}}</button>
+        </div>
+      </mat-list-item>
+
+
+      <mat-list-item>
+        <div matLine> Trip From Date :
+            <button  mat-button>{{this.infoTripData.fromDate}}</button>
+        </div>
+      </mat-list-item>
+
+
+      <mat-list-item>
+        <div matLine>Trip To Date :
+            <button  mat-button>{{this.infoTripData.toDate}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div matLine>Trip Description :
+            <button  mat-button>{{this.infoTripData.description}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div matLine>Trip status :
+            <button  mat-button>{{this.infoTripData.status}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="this.infoTripData.status === 'REJECTED'">
+        <div matLine> Reject Reason :
+            <button  mat-button>{{this.infoTripData.rejectReason}}</button>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="this.infoTripData.status === 'REJECTED'">
+        <div matLine>Reason Description :
+            <button  mat-button>{{this.infoTripData.rejectDescription}}</button>
+        </div>
+      </mat-list-item>
+
+
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions style="margin-left: 300px;">
+    <button mat-raised-button mat-dialog-close color="primary">OK</button>
+  </mat-card-actions>
+
+</mat-card>

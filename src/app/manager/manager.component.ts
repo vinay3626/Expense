@@ -1,6 +1,10 @@
+import { InfoDialogComponent } from './../info-dialog/info-dialog.component';
+import { RejectDialogComponent } from './../reject-dialog/reject-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NgConfirmService } from 'ng-confirm-box';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from './../services/api.service';
-import { Api1Service } from './../services/api1.service';
+// import { Api1Service } from '../services/serve.services';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -21,15 +25,21 @@ export class ManagerComponent implements OnInit {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  expenseColumns : String[] = ['date','merchant','category','currency','amount','description','action']
+  expenseColumns : String[] = ['date','merchant','category','currency','amount','description' , 'status','action']
 
-  tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description', 'action']
+  tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description', 'status', 'action']
 
-  ApprovedExpenses = {
+    actionTaken !: boolean;
 
+  customStyle ={
+    fontSize : "20px",
+    color : 'black'
   }
 
-  constructor(private api :ApiService,private toast : NgToastService) { }
+  constructor(private api :ApiService,
+    private toast : NgToastService,private confirm : NgConfirmService,
+    public dialog :MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.getAllExpenses()
@@ -41,10 +51,10 @@ export class ManagerComponent implements OnInit {
     this.api.getExpense()
     .subscribe({
       next:(results)=>{
+        console.log(results.results)
         this.expenseDataSource = new MatTableDataSource(results.results);
         this.expenseDataSource.paginator = this.paginator
         this.expenseDataSource.sort = this.sort
-
       },
       error:()=>{
 
@@ -76,22 +86,102 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-  ApproveExpense(row: any){
-    // console.log(row)
-    this.api.approveExpense(row,row.expenseId)
-    .subscribe(res=>{
-      this.toast.success({detail:"Expense Approved",duration:3000})
+  approveExpense(row: any){
+    console.log(row)
+    this.confirm.showConfirm("Are you sure want to Approve "+ row.merchant+ " ("+ row.category+") "+ "expense ?",
+    ()=>{
+      this.api.approveExpense(row,row.expenseId)
+      .subscribe(res=>{
+        this.toast.success({detail:"Expense Approved",duration:3000})
+        this.getAllExpenses()
+      })
+    },
+    ()=>{
+
+    }
+    )
+
+  }
+
+  openRejectDialog(row : any) {
+    console.log(row)
+    this.dialog.open(RejectDialogComponent, {
+
+        width :'50%',
+        height: '55%',
+        data : row
+    }).afterClosed().subscribe(val=>{
+        if(val === 'rejected'){
+          this.getAllExpenses()
+          this.getAllTrips()
+        }
     })
   }
 
-  RejectExpense(row : any){
-    this.api.rejectExpense(row,row.expenseId)
-    .subscribe(res=>{
-      this.toast.info({
-        detail: "Expense Rejected",duration:3000
-      })
+  openInfoDialog(row : any){
+    this.dialog.open(InfoDialogComponent, {
+        width : "50%",
+        data : row
+    }).afterClosed().subscribe(val=>{
+
+
     })
   }
+
+  // rejectExpense(row : any){
+  //     this.api.rejectExpense(row,row.expenseId)
+  //     .subscribe(res=>{
+  //       this.toast.info({
+  //         detail: "Expense Rejected",duration:3000
+  //       })
+  //       this.getAllExpenses()
+  //     })
+
+
+
+  // }
+
+
+
+  approveTrip(row : any){
+    console.log(row)
+    this.confirm.showConfirm("Are you sure want to approve " +row.tripName+" trip?",
+    ()=>{
+        this.api.approveTrip(row,row.tripId)
+        .subscribe(res=>{
+          this.toast.success({
+            detail:"Trip Approved",position:'br', duration: 3000
+          })
+        this.getAllTrips()
+
+        })
+    },
+    ()=>{
+
+    }
+    )
+
+  }
+
+  rejectTrip(row :any){
+    this.confirm.showConfirm(
+      "Are you sure want to Reject "+row.tripName+" trip"
+    ,
+    ()=>{
+        this.api.rejectTrip(row,row.tripId)
+        .subscribe(res=>{
+          this.toast.info({
+            detail:"Trip Rejected",duration: 3000,position: 'br'
+          })
+          this.getAllTrips()
+        })
+    },
+    ()=>{
+
+    }
+    )
+  }
+
 
   applyTripsFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

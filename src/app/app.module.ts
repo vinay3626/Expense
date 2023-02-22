@@ -44,7 +44,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
 import { ManagerComponent } from './manager/manager.component';
-import { NgConfirmModule } from 'ng-confirm-box'
+import { NgConfirmModule } from 'ng-confirm-box';
+import { RejectDialogComponent } from './reject-dialog/reject-dialog.component';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component'
 
 
 
@@ -69,6 +71,8 @@ import { NgConfirmModule } from 'ng-confirm-box'
     SettingsComponent,
     HomeComponent,
     ManagerComponent,
+    RejectDialogComponent,
+    InfoDialogComponent,
 
   ],
   imports: [

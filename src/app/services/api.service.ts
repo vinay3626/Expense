@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
+  totalCountOfReports !: number
+
   constructor( private http: HttpClient) {}
 
   // Expense APi services
@@ -55,6 +57,14 @@ export class ApiService {
 
     deleteTrip(id:number){
       return this.http.delete<any>("http://localhost:8080/expense/delete/trip/"+id)
+    }
+
+    approveTrip(data : any,id : number){
+      return this.http.post<any>("http://localhost:8080/expense/trip/approve/"+id,data)
+    }
+
+    rejectTrip(data : any,id: number){
+      return this.http.post<any>("http://localhost:8080/expense/trip/reject/"+id,data)
     }
 
     //Reports Api services

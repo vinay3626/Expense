@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgToastService } from 'ng-angular-popup';
 import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 import { ApiService } from '../services/api.service';
+import { serveServices } from '../services/serve.services';
 
 @Component({
   selector: 'app-reports',
@@ -18,6 +19,8 @@ export class ReportsComponent implements OnInit {
   ExpensesNames :string[] =[];
   uniqueExpenseNames : string[] =[] ;
 
+  totalReportsCount !: number;
+
   TripsNames : String[] =[];
   uniqueTripNames : String[] = []
 
@@ -28,7 +31,7 @@ export class ReportsComponent implements OnInit {
  @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
- constructor(private dialog:MatDialog, private api :ApiService,
+ constructor(private dialog:MatDialog, private api :ApiService, public serve:serveServices,
 
   private toast : NgToastService ) { }
 
@@ -37,6 +40,8 @@ export class ReportsComponent implements OnInit {
 
     this.getAllReports()
 
+      console.log(this.api.totalCountOfReports = this.totalReportsCount)
+      console.log(this.serve.totalCountOfReports)
   }
 
   // selectExpenses(){
@@ -102,10 +107,11 @@ export class ReportsComponent implements OnInit {
     this.api.getReports()
     .subscribe({
       next:(results)=>{
-     //   console.log(results.results)
+       console.log(results.results.length)
         this.reportsDataSource = new MatTableDataSource(results.results)
         this.reportsDataSource.paginator = this.paginator
         this.reportsDataSource.sort = this.sort
+        this.totalReportsCount = results.results.length
       },
       error:()=>
       {

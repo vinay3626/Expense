@@ -20,7 +20,7 @@
 
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
+        <td mat-cell *matCellDef="let row  " appHideSave> {{row.date | date}} </td>
       </ng-container>
 
 
@@ -60,10 +60,9 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row ">
 
-
+          <button class="button btn btn-outline-secondary " (click)="openInfoDialog(row)" >Info</button>
           <button *ngIf="!row.actionTaken == true"  class="button btn  btn-outline-primary" (click)="approveExpense(row)" >Approve </button>
           <button *ngIf="!row.actionTaken == true"  class="button btn btn-outline-danger"   (click)="openRejectDialog(row)" > Reject</button>
-          <button class="button btn btn-outline-secondary " (click)="openInfoDialog(row)" >Info</button>
 
         </td>
       </ng-container>
@@ -99,7 +98,7 @@
 
         <ng-container matColumnDef="tripName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Trip Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.tripName}} </td>
+          <td mat-cell  *matCellDef="let row" > {{row.tripName}} </td>
         </ng-container>
 
 
@@ -111,7 +110,7 @@
 
         <ng-container matColumnDef="fromDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
-          <td mat-cell *matCellDef="let row"> {{row.fromDate | date}} </td>
+          <td mat-cell *matCellDef="let row" > {{row.fromDate | date}} </td>
         </ng-container>
 
 
@@ -139,9 +138,9 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
           <td mat-cell *matCellDef="let row">
 
+             <button class="button btn btn-outline-secondary" (click)="openTripInfoDialog(row)" >Info</button>
               <button *ngIf="!row.isActionTaken == true" class="button btn btn-outline-primary"   (click)="approveTrip(row)" >Approve </button>
             <button *ngIf="!row.isActionTaken == true" class="button btn btn-outline-danger" (click)="openRejectDialog(row)"> Reject</button>
-            <button class="button btn btn-outline-secondary" (click)="openTripInfoDialog(row)" >Info</button>
           </td>
         </ng-container>
 

@@ -12,8 +12,12 @@ export class ApiService {
 
   // Expense APi services
 
-    postExpense(data:any){
-      return this.http.post<any>("http://localhost:8080/expense/save/expense",data);
+  saveExpense(data : any){
+    return this.http.post<any>("http://localhost:8080/expense/save/expense",data);
+  }
+
+    submitExpense(data:any){
+      return this.http.post<any>("http://localhost:8080/expense/submit/expense",data);
     }
 
     getExpense(){
@@ -43,12 +47,19 @@ export class ApiService {
 
     //Trip Api services
 
+
+
     getTrip(){
       return this.http.get<any>("http://localhost:8080/expense/fetch/trips")
     }
 
-    postTrip(data:any){
+    saveTrip(data : any){
       return this.http.post<any>("http://localhost:8080/expense/save/trip",data)
+
+    }
+
+    submitTrip(data:any){
+      return this.http.post<any>("http://localhost:8080/expense/submit/trip",data)
     }
 
     putTrip(data:any,id:number){

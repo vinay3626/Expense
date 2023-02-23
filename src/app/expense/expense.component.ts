@@ -1,3 +1,4 @@
+import { InfoDialogComponent } from './../info-dialog-expense/info-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,7 +16,7 @@ import { ApiService } from '../services/api.service';
 })
 export class ExpenseComponent implements OnInit {
 
-  expenseColumns: string[] = ['date', 'merchant', 'currency','category','description','amount' ,'Status', 'action'];
+  expenseColumns: string[] = ['merchant','date',  'currency','category','description','amount' ,'Status', 'action'];
 
   expenseDataSource !: MatTableDataSource<any>;
 
@@ -29,6 +30,16 @@ export class ExpenseComponent implements OnInit {
   ngOnInit(): void {
     this.getAllExpenses()
 
+  }
+
+  expenseInfo(row: any){
+
+    this.dialog.open(InfoDialogComponent,{
+      width : "auto",
+      data : row
+    }).afterClosed().subscribe(val=>{
+      console.log(val)
+    })
   }
 
   openDialog() {
@@ -51,7 +62,7 @@ export class ExpenseComponent implements OnInit {
         this.expenseDataSource.sort = this.sort
         },
     error:()=>{
-      this.toast.error({detail:'Error Message',summary:'Error in fetching expenses',position:'br',duration:5000})
+      this.toast.error({detail:'Error Message',summary:'Error in fetching expenses',position:'bl',duration:5000})
     }
   })
   }
@@ -77,11 +88,11 @@ export class ExpenseComponent implements OnInit {
       this.api.deleteExpense(id)
       .subscribe({
         next: (res)=>{
-          this.toast.success({detail:'Sucess Message',summary:'Expense Deleted',position:'br',duration:3000})
+          this.toast.success({detail:'Sucess Message',summary:'Expense Deleted',position:'bl',duration:3000})
           this.getAllExpenses();
         },
         error:()=>{
-          this.toast.error({detail:'Error Message',summary:'Error deleting expense',position:'br',duration:3000})
+          this.toast.error({detail:'Error Message',summary:'Error deleting expense',position:'bl',duration:3000})
         }
       })
 

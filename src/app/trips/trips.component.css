@@ -2,6 +2,10 @@ table {
     width: 100%;
   }
 
+  badge{
+    color: #555;
+  }
+
   .container{
     max-width: 1200px;
     margin: 0 auto;

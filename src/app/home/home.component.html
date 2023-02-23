@@ -72,6 +72,7 @@
          [class.text-bg-primary]="row.status=='SUBMITTED'"
           [class.text-bg-danger]="row.status == 'REJECTED'"
           [class.text-bg-success]="row.status == 'APPROVED'"
+          [class.text-bg-secondary] = "row.status == 'SAVED'"
         >{{row.status}}</span></td>
     </ng-container>
 
@@ -132,6 +133,7 @@
             [class.text-bg-primary]="row.status == 'SUBMITTED'"
              [class.text-bg-success]="row.status == 'APPROVED'"
              [class.text-bg-danger]="row.status == 'REJECTED'"
+             [class.text-bg-secondary] = "row.status == 'SAVED'"
              >{{row.status}}</span></td>
         </ng-container>
 

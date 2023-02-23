@@ -1,3 +1,4 @@
+import { ExpenseComponent } from './../expense/expense.component';
 import { InfoDialogTripComponent } from './../info-dialog-trip/info-dialog-trip.component';
 import { InfoDialogComponent } from '../info-dialog-expense/info-dialog.component';
 import { RejectDialogComponent } from './../reject-dialog/reject-dialog.component';
@@ -22,13 +23,15 @@ export class ManagerComponent implements OnInit {
   expenseDataSource !: MatTableDataSource<any>;
   tripDataSource !: MatTableDataSource<any>;
 
-
+  filteredExpenses !: object[]
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
   expenseColumns : String[] = ['date','merchant','category','currency','amount','description' , 'status','action']
 
   tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description', 'status', 'action']
+
+
 
     actionTaken !: boolean;
 
@@ -52,8 +55,19 @@ export class ManagerComponent implements OnInit {
     this.api.getExpense()
     .subscribe({
       next:(results)=>{
-        console.log(results.results)
+        console.log(results)
+        // console.log(results.results[0])
+        for(let x= 0 ; x< results.results.length; x++){
+        if(results.results[x].status == 'SUBMITTED' || results.results[x].status == 'REJECTED' || results.results[x].status == 'APPROVED')
+        {
+          this.filteredExpenses =  results.results[x]
+
+        }
+      }
+      console.log(this.filteredExpenses)
+      console.log(results.results)
         this.expenseDataSource = new MatTableDataSource(results.results);
+        console.log(this.expenseDataSource )
         this.expenseDataSource.paginator = this.paginator
         this.expenseDataSource.sort = this.sort
       },
@@ -121,7 +135,7 @@ export class ManagerComponent implements OnInit {
 
   openInfoDialog(row : any){
     this.dialog.open(InfoDialogComponent, {
-        width : "50%",
+        width : "auto",
         data : row
     }).afterClosed().subscribe(val=>{
 
@@ -131,7 +145,7 @@ export class ManagerComponent implements OnInit {
 
   openTripInfoDialog(row : any){
     this.dialog.open(InfoDialogTripComponent,{
-      width : "50%",
+      width : "auto",
       data :row
     }).afterClosed().subscribe(val=>{
 
@@ -160,7 +174,7 @@ export class ManagerComponent implements OnInit {
         this.api.approveTrip(row,row.tripId)
         .subscribe(res=>{
           this.toast.success({
-            detail:"Trip Approved",position:'br', duration: 3000
+            detail:"Trip Approved",position:'bl', duration: 3000
           })
         this.getAllTrips()
 
@@ -181,7 +195,7 @@ export class ManagerComponent implements OnInit {
         this.api.rejectTrip(row,row.tripId)
         .subscribe(res=>{
           this.toast.info({
-            detail:"Trip Rejected",duration: 3000,position: 'br'
+            detail:"Trip Rejected",duration: 3000,position: 'bl'
           })
           this.getAllTrips()
         })

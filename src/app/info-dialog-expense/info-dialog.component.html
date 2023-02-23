@@ -68,8 +68,10 @@
 
   </mat-card-content>
 
-  <mat-card-actions style="margin-left: 300px;">
-    <button mat-raised-button color="primary" mat-dialog-close>OK</button>
+  <mat-card-actions >
+    <p *ngIf="this.infoData.status == 'SAVED' " >Note : Please Submit you Expense <span class="badge bg-secondary" >!</span></p>
+
+    <button style="margin-left: 300px;" mat-raised-button color="primary" mat-dialog-close>OK</button>
   </mat-card-actions>
 
 

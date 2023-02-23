@@ -37,7 +37,7 @@ export class RejectDialogComponent implements OnInit {
       this.api.rejectExpense(this.rejectForm.value,this.dataFromManager.expenseId).subscribe(res=>{
 
         this.toast.info({
-        detail: "Expense rejected", position: 'br',duration:3000
+        detail: "Expense rejected", position: 'bl',duration:3000
           })
       this.rejectForm.reset();
       this.dialogRef.close('rejected')
@@ -48,7 +48,7 @@ export class RejectDialogComponent implements OnInit {
       this.api.rejectTrip(this.rejectForm.value,this.dataFromManager.tripId)
       .subscribe(res=>{
         this.toast.info({
-          detail:"Trip rejected",position: "br",duration :3000
+          detail:"Trip rejected",position: "bl",duration :3000
         })
         this.rejectForm.reset();
         this.dialogRef.close('rejected')

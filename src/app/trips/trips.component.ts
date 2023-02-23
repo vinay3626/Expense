@@ -1,3 +1,4 @@
+import { InfoDialogTripComponent } from './../info-dialog-trip/info-dialog-trip.component';
 import { NgConfirmService } from 'ng-confirm-box';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,6 +42,14 @@ export class TripsComponent implements OnInit {
 
   }
 
+  infoTrips(row : any){
+    this.dialog.open(InfoDialogTripComponent,
+      { width: 'auto',
+          data : row
+      }
+      )
+  }
+
   getAllTrips(){
     this.api.getTrip()
     .subscribe({
@@ -51,7 +60,7 @@ export class TripsComponent implements OnInit {
         this.tripDataSource.sort = this.sort
       },
       error:()=>{
-      this.toast.error({detail:'Error Message',summary:'Error in fetching Trips',position:'br',duration:3000})
+      this.toast.error({detail:'Error Message',summary:'Error in fetching Trips',position:'bl',duration:3000})
       }
 
     })
@@ -77,11 +86,11 @@ export class TripsComponent implements OnInit {
       this.api.deleteTrip(id)
       .subscribe({
         next:(res)=>{
-          this.toast.success({detail:'Success',summary:'Trip deleted successfully',position:'br', duration: 3000})
+          this.toast.success({detail:'Success',summary:'Trip deleted successfully',position:'bl', duration: 3000})
           this.getAllTrips();
         },
         error:()=>{
-          this.toast.error({detail:'Error Message',summary:'Error  deleting trip',position:'br',duration:3000})
+          this.toast.error({detail:'Error Message',summary:'Error  deleting trip',position:'bl',duration:3000})
         }
       })
     },

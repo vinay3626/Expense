@@ -48,6 +48,9 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import { RejectDialogComponent } from './reject-dialog/reject-dialog.component';
 import { InfoDialogComponent } from './info-dialog-expense/info-dialog.component';
 import { InfoDialogTripComponent } from './info-dialog-trip/info-dialog-trip.component'
+import {MatBadge, MatBadgeModule} from '@angular/material/badge';
+import { HideSaveDirective } from './hide-save.directive';
+
 
 
 
@@ -75,6 +78,7 @@ import { InfoDialogTripComponent } from './info-dialog-trip/info-dialog-trip.com
     RejectDialogComponent,
     InfoDialogComponent,
     InfoDialogTripComponent,
+    HideSaveDirective,
 
   ],
   imports: [
@@ -107,7 +111,8 @@ import { InfoDialogTripComponent } from './info-dialog-trip/info-dialog-trip.com
     MatMenuModule,
     MatSlideToggleModule,
     MatCardModule,
-    NgConfirmModule
+    NgConfirmModule,
+    MatBadgeModule,
 
 
   ],

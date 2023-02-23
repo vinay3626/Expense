@@ -1,4 +1,5 @@
-<h1 mat-dialog-title>Add Expense</h1>
+<h1  mat-dialog-title>{{actionButtonTitle}}</h1>
+
 
     <form [formGroup]="expenseForm">
 
@@ -92,8 +93,9 @@
     </form>
 
       <div mat-dialog-actions [align]="'end'">
-        <button mat-raised-button color="primary" (click)="addExpense()">{{actionBtn}}</button>
-        <button mat-raised-button  mat-dialog-close>Cancel</button>
+        <button mat-stroked-button  mat-dialog-close>Cancel</button>
+        <button mat-stroked-button color="primary" *ngIf="toggleSaveBtn" (click)="saveExpense()"  >Save</button>
+        <button mat-raised-button color="primary" (click)="submitExpense()">{{actionBtn}}</button>
 
        </div>
 

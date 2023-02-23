@@ -1,6 +1,6 @@
 <mat-card>
 
-  <mat-card-header>
+  <mat-card-header >
     <mat-card-title>
       Details of the Trip
     </mat-card-title>
@@ -30,14 +30,14 @@
 
       <mat-list-item>
         <div matLine> Trip From Date :
-            <button  mat-button>{{this.infoTripData.fromDate}}</button>
+            <button  mat-button>{{this.infoTripData.fromDate | date}}</button>
         </div>
       </mat-list-item>
 
 
       <mat-list-item>
         <div matLine>Trip To Date :
-            <button  mat-button>{{this.infoTripData.toDate}}</button>
+            <button  mat-button>{{this.infoTripData.toDate | date}}</button>
         </div>
       </mat-list-item>
 
@@ -66,11 +66,17 @@
       </mat-list-item>
 
 
+
+
     </mat-list>
+
+
   </mat-card-content>
 
-  <mat-card-actions style="margin-left: 300px;">
-    <button mat-raised-button mat-dialog-close color="primary">OK</button>
+  <mat-card-actions >
+    <p *ngIf="this.infoTripData.status === 'SAVED'"> Note : Please Submit your Trip <span *ngIf="infoTripData.status == 'SAVED'" class="badge bg-secondary">!</span></p>
+
+    <button style="margin-left: 300px;" mat-raised-button mat-dialog-close color="primary">OK</button>
   </mat-card-actions>
 
 </mat-card>

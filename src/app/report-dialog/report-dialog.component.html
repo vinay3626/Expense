@@ -34,8 +34,8 @@
     </mat-form-field>
 
     <mat-form-field  appearance="outline" style="width: 300px; margin-left: 10px ;">
-      <mat-label >Select Trips</mat-label>
-      <mat-select   multiple>
+      <mat-label >Select Trip</mat-label>
+      <mat-select >
         <mat-option   *ngFor="let trip of uniqueTripNames" [value]="trip">{{trip}}</mat-option>
       </mat-select>
     </mat-form-field>

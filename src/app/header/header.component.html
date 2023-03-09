@@ -1,7 +1,9 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
-    </button>
-    <span style="text-align: center;">Expenses</span>
-    <span class="example-spacer"></span>
-    <!-- <button mat-raised-button color="primary" (click)="openDialog()" style="left: 1200px;" >Add Expense</button> -->
+  <div class="d-flex justify-content-between" >
+    <div>Expenses</div>
+    <div style="margin-left: 37cm;" >
+      <button mat-stroked-button style="margin:5px">Profile</button>
+      <button mat-stroked-button (click)="logOut()" >Logout</button>
+    </div>
+    </div>
     </mat-toolbar>

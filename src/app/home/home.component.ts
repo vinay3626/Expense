@@ -18,9 +18,11 @@ export class HomeComponent implements OnInit {
   tripDataSource !: MatTableDataSource<any>
   expenseColumns  : string[] = ['date', 'merchant', 'currency', 'category','description','amount' ,'status'];
   tripsColumn = ['tripName','fromLocation','fromDate','toLocation','toDate','description','status'];
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
-  @ViewChild(MatSort) sort !: MatSort;
+  @ViewChild(MatPaginator) expensepaginator !: MatPaginator;
+  @ViewChild(MatSort) expenseSort !: MatSort;
 
+  @ViewChild(MatPaginator) tripPaginator !: MatPaginator;
+  @ViewChild(MatSort) tripSort !: MatSort;
 
   totalExpenseCount!: number;
   totalTripsCount !: number;
@@ -73,8 +75,8 @@ export class HomeComponent implements OnInit {
       next:(results)=>{
         console.log(results.results)
         this.expenseDataSource = new MatTableDataSource(results.results);
-        this.expenseDataSource.paginator = this.paginator;
-        this.expenseDataSource.sort = this.sort
+        this.expenseDataSource.paginator = this.expensepaginator;
+        this.expenseDataSource.sort = this.expenseSort
         this.totalExpenseCount = results.results.length
        this.countApprovedExpenses(results.results)
        this.countAmount(results.results)
@@ -102,8 +104,8 @@ export class HomeComponent implements OnInit {
       next:(results)=>{
   //      console.log(results.results)
         this.tripDataSource = new MatTableDataSource(results.results);
-        this.tripDataSource.paginator = this.paginator;
-        this.tripDataSource.sort = this.sort
+        this.tripDataSource.paginator = this.tripPaginator;
+        this.tripDataSource.sort = this.tripSort
         this.totalTripsCount = results.results.length
 
       },

@@ -1,156 +1,141 @@
-
 <div class="container">
+  <div class="cards">
+    <mat-card>
+      <mat-card-title>{{ this.totalExpenseCount }}</mat-card-title>
+      <mat-card-content>Total Expenses</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>{{ this.totalTripsCount }}</mat-card-title>
+      <mat-card-content>Total Trips</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>70</mat-card-title>
+      <mat-card-content>Total Reports</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>{{ this.amountOfApprovedExpenses }}</mat-card-title>
+      <mat-card-content>Amount to be Reimbursed</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>{{ this.approvedExpensesCount }}</mat-card-title>
+      <mat-card-content>Approved Expenses</mat-card-content>
+    </mat-card>
+  </div>
 
-<div class="cards">
-  <mat-card >
-
-    <mat-card-title>{{this.totalExpenseCount}}</mat-card-title>
-    <mat-card-content>Total Expenses</mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>{{this.totalTripsCount}}</mat-card-title>
-    <mat-card-content>Total Trips</mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>70</mat-card-title>
-    <mat-card-content>Total Reports</mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>{{this.amountOfApprovedExpenses}}</mat-card-title>
-    <mat-card-content>Amount to be Reimbursed</mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>{{this.approvedExpensesCount}}</mat-card-title>
-    <mat-card-content>Approved Expenses</mat-card-content>
-  </mat-card>
-
-</div>
-
-<br>
-<h3 style="margin: 10px;"  [ngStyle]="customStyle"> Recent Expenses </h3>
+  <br />
+  <h3 style="margin: 10px" [ngStyle]="customStyle">Recent Expenses</h3>
 
   <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="expenseDataSource" matSort>
+    <table mat-table [dataSource]="expenseDataSource" matSort>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.date | date }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="merchant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Merchant</th>
+        <td mat-cell *matCellDef="let row">{{ row.merchant }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
-    </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+        <td mat-cell *matCellDef="let row">{{ row.amount }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
+        <td mat-cell *matCellDef="let row">{{ row.currency }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="merchant">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Merchant </th>
-      <td mat-cell *matCellDef="let row"> {{row.merchant}} </td>
-    </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let row">{{ row.category }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
-      <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="currency">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency </th>
-      <td mat-cell *matCellDef="let row"> {{row.currency}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-      <td mat-cell *matCellDef="let row"> {{row.category}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let row" > <span class="badge"
-         [class.text-bg-primary]="row.status=='SUBMITTED'"
-          [class.text-bg-danger]="row.status == 'REJECTED'"
-          [class.text-bg-success]="row.status == 'APPROVED'"
-          [class.text-bg-secondary] = "row.status == 'SAVED'"
-        >{{row.status}}</span></td>
-    </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="expenseColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: expenseColumns;"></tr>
-
-    <!-- <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr> -->
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-    </div>
-
-
-    <h3 style="margin-top: 20px; margin-left: 10px;" [ngStyle]="customStyle">Recent Trips</h3>
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="tripDataSource" matSort>
-
-
-        <ng-container matColumnDef="tripName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Trip Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.tripName}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="fromLocation">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> From Location </th>
-          <td mat-cell *matCellDef="let row"> {{row.fromLocation}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="fromDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
-          <td mat-cell *matCellDef="let row"> {{row.fromDate | date}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="toLocation">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
-          <td mat-cell *matCellDef="let row"> {{row.toLocation}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="toDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> To Date </th>
-          <td mat-cell *matCellDef="let row"> {{row.toDate | date}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-          <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header > Status</th>
-          <td   mat-cell *matCellDef="let row" > <span class="badge"
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">
+          <span
+            class="badge"
             [class.text-bg-primary]="row.status == 'SUBMITTED'"
-             [class.text-bg-success]="row.status == 'APPROVED'"
-             [class.text-bg-danger]="row.status == 'REJECTED'"
-             [class.text-bg-secondary] = "row.status == 'SAVED'"
-             >{{row.status}}</span></td>
-        </ng-container>
+            [class.text-bg-danger]="row.status == 'REJECTED'"
+            [class.text-bg-success]="row.status == 'APPROVED'"
+            [class.text-bg-secondary]="row.status == 'SAVED'"
+            >{{ row.status }}</span
+          >
+        </td>
+      </ng-container>
 
+      <tr mat-header-row *matHeaderRowDef="expenseColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: expenseColumns"></tr>
+    </table>
 
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
 
-        <tr mat-header-row *matHeaderRowDef="tripsColumn"></tr>
-        <tr mat-row *matRowDef="let row; columns: tripsColumn;"></tr>
+  <h3 style="margin-top: 20px; margin-left: 10px" [ngStyle]="customStyle">
+    Recent Trips
+  </h3>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="tripDataSource" matSort>
+      <ng-container matColumnDef="tripName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Trip Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.tripName }}</td>
+      </ng-container>
 
-        <!-- <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        </tr> -->
-      </table>
+      <ng-container matColumnDef="fromLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>From Location</th>
+        <td mat-cell *matCellDef="let row">{{ row.fromLocation }}</td>
+      </ng-container>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      <ng-container matColumnDef="fromDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>From Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.fromDate | date }}</td>
+      </ng-container>
 
-      </div>
+      <ng-container matColumnDef="toLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>To Location</th>
+        <td mat-cell *matCellDef="let row">{{ row.toLocation }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="toDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>To Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.toDate | date }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
 
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">
+          <span
+            class="badge"
+            [class.text-bg-primary]="row.status == 'SUBMITTED'"
+            [class.text-bg-success]="row.status == 'APPROVED'"
+            [class.text-bg-danger]="row.status == 'REJECTED'"
+            [class.text-bg-secondary]="row.status == 'SAVED'"
+            >{{ row.status }}</span
+          >
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="tripsColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: tripsColumn"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
 </div>

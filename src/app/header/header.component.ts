@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -5,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseDialogComponent } from '../expense-dialog/expense-dialog.component';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +22,16 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-  
-  constructor(private dialog:MatDialog,private api:ApiService){
+
+  constructor(private dialog:MatDialog,private api:ApiService,private auth:AuthService,private router:Router){
 
   }
   ngOnInit(): void {
-
+   console.log( this.auth.isUserAuthenticated());
   }
 
 
-  
+
   getAllExpenses(){
     this.api.getExpense()
     .subscribe({
@@ -58,6 +60,12 @@ export class HeaderComponent implements OnInit {
   }
 
 
- 
+  logOut(){
+    this.auth.logout()
+    this.router.navigate([''])
+  }
+
+
+
 
 }

@@ -8,20 +8,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path:'',loadChildren:()=>import('./models/auth/auth.module').then((m)=>m.AuthModule)},
+  // {path:'',redirectTo:'home',pathMatch:'full'},
+  {path: 'home',
+  loadChildren: () =>
+  import('./layout/layout.module').then((m) => m.LayoutModule),},
 
-  { path: 'login', component:LoginComponent},
-  { path: 'signup', component:SignupComponent},
-  { path: 'profile', component: ProfileComponent},
-
-  { path: '',redirectTo:'home',pathMatch:'full'},
-  { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },
-
-  { path:'**', component: PageNotFoundComponent }
-  ];
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents = [ProfileComponent]
+export class AppRoutingModule {}
+export const routingComponents = [ProfileComponent];

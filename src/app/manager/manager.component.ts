@@ -35,6 +35,7 @@ export class ManagerComponent implements OnInit {
 
     actionTaken !: boolean;
 
+
   customStyle ={
     fontSize : "20px",
     color : 'black'
@@ -56,17 +57,12 @@ export class ManagerComponent implements OnInit {
     .subscribe({
       next:(results)=>{
         console.log(results)
-        // console.log(results.results[0])
-        for(let x= 0 ; x< results.results.length; x++){
-        if(results.results[x].status == 'SUBMITTED' || results.results[x].status == 'REJECTED' || results.results[x].status == 'APPROVED')
-        {
-          this.filteredExpenses =  results.results[x]
-
-        }
-      }
-      console.log(this.filteredExpenses)
+      let resposne = results.results.filter((a:any)=>{
+        console.log(a)
+        return a.status !== 'SAVED';
+      })
       console.log(results.results)
-        this.expenseDataSource = new MatTableDataSource(results.results);
+        this.expenseDataSource = new MatTableDataSource(resposne);
         console.log(this.expenseDataSource )
         this.expenseDataSource.paginator = this.paginator
         this.expenseDataSource.sort = this.sort
@@ -83,13 +79,15 @@ export class ManagerComponent implements OnInit {
 
     .subscribe({
       next:(results)=>{
-        this.tripDataSource =new MatTableDataSource(results.results);
+        let response = results.results.filter( (trip :any) =>{
+          return trip.status != 'SAVED'
+        })
+        this.tripDataSource =new MatTableDataSource(response);
       },
       error:()=>{
 
       }
     })
-
   }
 
   applyFilter(event: Event) {

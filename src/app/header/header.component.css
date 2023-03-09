@@ -8,10 +8,12 @@ example-spacer {
     border: 1px solid #555;
   }
 
+
+
   table {
     width: 100%;
   }
-  
+
   .mat-form-field {
     font-size: 14px;
     width: 100%;
@@ -28,4 +30,8 @@ example-spacer {
     margin: 10px;
     border: 1px solid #555;
   }
-  
+
+  .btn-group{
+    display:flex;
+    justify-content: space-around;
+  }

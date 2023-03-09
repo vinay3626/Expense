@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
+
+  isAdmin = 'false'
+
+  adminCheck(){
+
+   if( this.auth.checkForAdmin() === 'ADMIN'){
+    return 'ADMIN'
+   }else{
+    return 'USER'
+   }
+  }
+
 
   ngOnInit(): void {
+    this.auth.checkForAdmin()
   }
 
 }
